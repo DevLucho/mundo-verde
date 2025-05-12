@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicaciones de Reciclaje - Mundo Verde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span class="logo-text">Mundo Verde</span>
+            </div>
+            <div class="points-display">
+                <i class="fas fa-star"></i>
+                <span>2,450 pts</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Buscar localizaciones..." class="search-input">
+    </div>
+
+    <main>
+        <section class="recycling-locations">
+            <div class="map-section">
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="location-list">
+                <div class="location-item">
+                    <h3>Punto de Reciclaje Soacha</h3>
+                    <div class="location-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle 13 # 12-34</p>
+                        <p><i class="fas fa-recycle"></i> Plástico, papel, cartón, vidrio</p>
+                        <p><i class="fas fa-clock"></i> Lunes a Sábado, 8:00 AM - 5:00 PM</p>
+                    </div>
+                    <button class="btn-directions">
+                        <i class="fas fa-directions"></i>
+                        Cómo llegar
+                    </button>
+                </div>
+                <div class="location-item">
+                    <h3>Centro de Acopio Ambiental</h3>
+                    <div class="location-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Avenida Principal # 45-67</p>
+                        <p><i class="fas fa-recycle"></i> Electrónicos, metales, plásticos</p>
+                        <p><i class="fas fa-clock"></i> Martes a Domingo, 9:00 AM - 4:00 PM</p>
+                    </div>
+                    <button class="btn-directions">
+                        <i class="fas fa-directions"></i>
+                        Cómo llegar
+                    </button>
+                </div>
+                <div class="location-item">
+                    <h3>EcoParque</h3>
+                    <div class="location-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Carrera 7 # 14-89</p>
+                        <p><i class="fas fa-recycle"></i> Cartón, papel, envases de vidrio</p>
+                        <p><i class="fas fa-clock"></i> Lunes a Viernes, 7:30 AM - 6:00 PM</p>
+                    </div>
+                    <button class="btn-directions">
+                        <i class="fas fa-directions"></i>
+                        Cómo llegar
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="footer-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Ubicaciones</span>
+        </a>
+        <a href="scan-and-earn.html" class="nav-item">
+            <i class="fas fa-qrcode"></i>
+            <span>Escanear</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <i class="fas fa-sign-out-alt"></i> 
+            <span>Cerrar sesión</span>
+        </a>
+    </nav>
+
+    <script>
+        // Crear mapa centrado en Soacha
+        const map = L.map('map', {
+            zoomControl: false  // Desactivar controles de zoom predeterminados
+        }).setView([4.578889, -74.216944], 13);
+
+        // Agregar controles de zoom a la esquina superior derecha
+        L.control.zoom({
+            position: 'topright'
+        }).addTo(map);
+
+        // Agregar capa de OpenStreetMap con estilo personalizado
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Puntos de reciclaje
+        const recyclingPoints = [
+            {
+                name: "Punto de Reciclaje Soacha",
+                position: [4.578889, -74.216944],
+                address: "Calle 13 # 12-34",
+                materials: "Plástico, papel, cartón, vidrio",
+                schedule: "Lunes a Sábado, 8:00 AM - 5:00 PM"
+            },
+            {
+                name: "Centro de Acopio Ambiental",
+                position: [4.582778, -74.222222],
+                address: "Avenida Principal # 45-67",
+                materials: "Electrónicos, metales, plásticos",
+                schedule: "Martes a Domingo, 9:00 AM - 4:00 PM"
+            },
+            {
+                name: "EcoParque",
+                position: [4.575000, -74.219444],
+                address: "Carrera 7 # 14-89",
+                materials: "Cartón, papel, envases de vidrio",
+                schedule: "Lunes a Viernes, 7:30 AM - 6:00 PM"
+            }
+        ];
+
+        // Crear un ícono personalizado verde
+        const greenIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Grupo para los marcadores
+        const markers = L.featureGroup();
+
+        // Agregar marcadores para cada punto de reciclaje
+        recyclingPoints.forEach(point => {
+            const marker = L.marker(point.position, {icon: greenIcon});
+            
+            const popupContent = `
+                <div style="padding: 10px;">
+                    <h3 style="color: #00C851; margin-bottom: 10px;">${point.name}</h3>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Dirección:</strong> ${point.address}</p>
+                    <p><strong><i class="fas fa-recycle"></i> Materiales:</strong> ${point.materials}</p>
+                    <p><strong><i class="fas fa-clock"></i> Horario:</strong> ${point.schedule}</p>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent);
+            markers.addLayer(marker);
+            
+            // Agregar interactividad a las tarjetas de ubicación
+            document.querySelectorAll('.location-item').forEach((item, index) => {
+                if (item.querySelector('h3').textContent === point.name) {
+                    item.querySelector('.btn-directions').addEventListener('click', () => {
+                        map.setView(point.position, 15);
+                        marker.openPopup();
+                    });
+                }
+            });
+        });
+
+        // Añadir grupo de marcadores al mapa
+        markers.addTo(map);
+
+        // Ajustar vista para mostrar todos los marcadores
+        map.fitBounds(markers.getBounds(), { padding: [50, 50] });
+
+        // Funcionalidad de búsqueda
+        const searchInput = document.querySelector('.search-input');
+        const locationItems = document.querySelectorAll('.location-item');
+
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            locationItems.forEach(item => {
+                const name = item.querySelector('h3').textContent.toLowerCase();
+                const details = item.querySelector('.location-details').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || details.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Actualizar mapa cuando cambie el tamaño de la ventana
+        window.addEventListener('resize', () => {
+            map.invalidateSize();
+            if (markers.getLayers().length > 0) {
+                map.fitBounds(markers.getBounds(), { padding: [50, 50] });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mundo Verde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-page">
+    <header class="login-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span class="logo-text">Mundo Verde</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <form class="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn-login">Iniciar sesión</button>
+            
+            <div class="divider">
+                <span>o inicia sesión con</span>
+            </div>
+            
+            <div class="social-login">
+                <button type="button" class="btn-social btn-facebook" onclick="handleLogin(event)">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </button>
+                <button type="button" class="btn-social btn-google" onclick="handleLogin(event)">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+            </div>
+            
+            <p class="register-link">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+        </form>
+    </main>
+
+    <script>
+        function handleLogin(e) {
+            e.preventDefault();
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+</html>

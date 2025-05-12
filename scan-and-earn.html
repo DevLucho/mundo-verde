@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Verde - Escanear y Ganar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="scan-page">
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span class="logo-text">Mundo Verde</span>
+            </div>
+            <div class="points-display">
+                <i class="fas fa-star"></i>
+                <span>2,450 puntos</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="scan-main">
+        <section class="scanner-section">
+            <div class="scanner-container">
+                <div class="scanner-frame">
+                    <div class="scanner-lines"></div>
+                    <div class="scanner-overlay">
+                        <i class="fas fa-qrcode scanner-icon"></i>
+                    </div>
+                    <p class="scanner-text">Alinea el código QR dentro del marco</p>
+                </div>
+                <button class="btn-scan">
+                    <i class="fas fa-camera"></i>
+                    <span>Iniciar Escaneo</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="scan-history">
+            <div class="history-header">
+                <h2>Historial de Hoy</h2>
+                <span class="today-points">+75 puntos</span>
+            </div>
+            <div class="history-list">
+                <div class="history-item">
+                    <div class="item-info">
+                        <i class="fas fa-bottle-water"></i>
+                        <div class="item-details">
+                            <span class="item-name">Botella de plástico</span>
+                            <span class="item-time">Hace 2 horas</span>
+                        </div>
+                    </div>
+                    <span class="points-earned">+25 pts</span>
+                </div>
+                <div class="history-item">
+                    <div class="item-info">
+                        <i class="fas fa-newspaper"></i>
+                        <div class="item-details">
+                            <span class="item-name">Papel periódico</span>
+                            <span class="item-time">Hace 3 horas</span>
+                        </div>
+                    </div>
+                    <span class="points-earned">+15 pts</span>
+                </div>
+                <div class="history-item">
+                    <div class="item-info">
+                        <i class="fas fa-box"></i>
+                        <div class="item-details">
+                            <span class="item-name">Caja de cartón</span>
+                            <span class="item-time">Hace 5 horas</span>
+                        </div>
+                    </div>
+                    <span class="points-earned">+35 pts</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="footer-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="recycling-locations.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Ubicaciones</span>
+        </a>
+        <a href="scan-and-earn.html" class="nav-item active">
+            <i class="fas fa-qrcode"></i>
+            <span>Escanear</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <i class="fas fa-sign-out-alt"></i> 
+            <span>Cerrar sesión</span>
+        </a>
+    </nav>
+
+</body>
+</html>

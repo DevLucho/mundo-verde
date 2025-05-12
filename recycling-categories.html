@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Verde - Guía de Reciclaje</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="categories-page">
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span class="logo-text">Mundo Verde</span>
+            </div>
+            <div class="points-display">
+                <i class="fas fa-star"></i>
+                <span>2,450 puntos</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="categories-main">
+        <div class="page-title">
+            <h1>Guía de Reciclaje</h1>
+            <p>Aprende a clasificar correctamente los materiales reciclables</p>
+        </div>
+
+        <section class="categories-section">
+            <div class="categories-grid">
+                <div class="category-card" onclick="openModal('plastico')">
+                    <div class="category-icon plastico">
+                        <i class="fas fa-bottle-water"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Plásticos</h3>
+                        <p>Botellas, envases y contenedores plásticos</p>
+                        <span class="points-info">15-25 pts</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="openModal('papel')">
+                    <div class="category-icon papel">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Papel y Cartón</h3>
+                        <p>Periódicos, revistas, cajas y empaques</p>
+                        <span class="points-info">10-35 pts</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="openModal('vidrio')">
+                    <div class="category-icon vidrio">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Vidrio</h3>
+                        <p>Botellas y frascos de vidrio</p>
+                        <span class="points-info">20-30 pts</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="openModal('metal')">
+                    <div class="category-icon metal">
+                        <i class="fas fa-can-food"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Metal</h3>
+                        <p>Latas, aluminio y metal reciclable</p>
+                        <span class="points-info">25-40 pts</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="openModal('organico')">
+                    <div class="category-icon organico">
+                        <i class="fas fa-apple-core"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Orgánicos</h3>
+                        <p>Restos de comida y residuos de jardín</p>
+                        <span class="points-info">5-15 pts</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="openModal('especial')">
+                    <div class="category-icon especial">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Especiales</h3>
+                        <p>Baterías, electrónicos y otros</p>
+                        <span class="points-info">50-100 pts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modales para información relevante -->
+        <div id="modal-bg" class="modal-bg" style="display:none" onclick="closeModal()"></div>
+        <div id="modal-info" class="modal-info" style="display:none">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+
+        <section class="recycling-tips">
+            <h2>Consejos de Reciclaje</h2>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <i class="fas fa-droplet"></i>
+                    <p>Enjuaga los envases antes de reciclarlos</p>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-compress"></i>
+                    <p>Aplasta las cajas y latas para ahorrar espacio</p>
+                </div>
+                <div class="tip-item">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <p>Verifica los símbolos de reciclaje en los productos</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    const modalData = {
+        plastico: {
+            title: 'Plásticos',
+            html: `<ul>
+                <li>Botellas PET (agua, refrescos)</li>
+                <li>Envases de productos de limpieza</li>
+                <li>Bolsas plásticas limpias</li>
+                <li>Tapas y envases de yogur</li>
+                <li><b>Importante:</b> Enjuaga los envases antes de reciclar.</li>
+            </ul>`
+        },
+        papel: {
+            title: 'Papel y Cartón',
+            html: `<ul>
+                <li>Periódicos, revistas y folletos</li>
+                <li>Cajas de cartón limpias</li>
+                <li>Cuadernos y hojas usadas</li>
+                <li><b>No incluir:</b> Papel sanitario, servilletas sucias</li>
+            </ul>`
+        },
+        vidrio: {
+            title: 'Vidrio',
+            html: `<ul>
+                <li>Botellas y frascos de vidrio</li>
+                <li>Envases de alimentos y bebidas</li>
+                <li><b>No incluir:</b> Vidrios rotos, espejos, bombillos</li>
+            </ul>`
+        },
+        metal: {
+            title: 'Metal',
+            html: `<ul>
+                <li>Latas de aluminio y acero</li>
+                <li>Tapas metálicas</li>
+                <li>Envases de conservas</li>
+                <li><b>Importante:</b> Enjuaga y aplasta las latas</li>
+            </ul>`
+        },
+        organico: {
+            title: 'Orgánicos',
+            html: `<ul>
+                <li>Restos de frutas y verduras</li>
+                <li>Residuos de café y té</li>
+                <li>Hojas y césped</li>
+                <li><b>No incluir:</b> Plásticos, metales, vidrios</li>
+            </ul>`
+        },
+        especial: {
+            title: 'Especiales',
+            html: `<ul>
+                <li>Baterías y pilas usadas</li>
+                <li>Electrodomésticos pequeños</li>
+                <li>Bombillos y electrónicos</li>
+                <li><b>Importante:</b> Lleva estos residuos a puntos limpios</li>
+            </ul>`
+        }
+    };
+    function openModal(key) {
+        document.getElementById('modal-bg').style.display = 'block';
+        document.getElementById('modal-info').style.display = 'block';
+        document.getElementById('modal-content').innerHTML = `<h2>${modalData[key].title}</h2>${modalData[key].html}`;
+    }
+    function closeModal() {
+        document.getElementById('modal-bg').style.display = 'none';
+        document.getElementById('modal-info').style.display = 'none';
+    }
+    </script>
+
+    <nav class="footer-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="recycling-locations.html" class="nav-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Ubicaciones</span>
+        </a>
+        <a href="scan-and-earn.html" class="nav-item">
+            <i class="fas fa-qrcode"></i>
+            <span>Escanear</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <i class="fas fa-sign-out-alt"></i> 
+            <span>Cerrar sesión</span>
+        </a>
+    </nav>
+
+</body>
+</html>
